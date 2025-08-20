@@ -1,6 +1,7 @@
 # Stock Market Project
 
-
+![](https://i.postimg.cc/XN8H9K39/Screenshot-1113.png)
+![](https://i.postimg.cc/CLxv7ZLX/Screenshot-1114.png)
 ## Development Approach
 
 * First, I started by finding a dataset for displaying charts because that’s the core of the project. While researching, I came across an API called **Twelve Data API**, which provides extensive stock market data at different time intervals. It was also easy to integrate.
