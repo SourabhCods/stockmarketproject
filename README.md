@@ -1,69 +1,30 @@
-# React + TypeScript + Vite
+# Stock Market Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Development Approach
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* First, I started by finding a dataset for displaying charts because that’s the core of the project. While researching, I came across an API called **Twelve Data API**, which provides extensive stock market data at different time intervals. It was also easy to integrate.
 
-## Expanding the ESLint configuration
+* Next, I moved to the frontend part, which involved rendering and displaying stock charts. For this, I used the **react-chartjs-2** npm package (a wrapper around Chart.js). It provides various chart styles with source code and required attributes, making it easy to embed into my project. I chose it because it’s one of the most widely used chart libraries in the developer community.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* For storing data, I used **Supabase**, a free cloud database built specifically for Postgres. This reduces the hassle of manually hosting a database and handling related setups. Along with that, I used Prisma for querying the database. Prisma Client provides built-in methods for performing queries, which makes the work much easier without writing raw query logic. This combination worked really well.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* Lastly, for the backend, I used **Express with TypeScript**. TypeScript ensures type checking and type safety, reducing the chances of runtime errors in production.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Technologies Used
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* Frontend (Client-side): React.js + TypeScript
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+* Backend (Server-side): Node.js + Express + TypeScript
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+* Database: Supabase + Prisma
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Challenges encountered 
+
+* The first challenge was finding a dataset that was suitable for Chart.js.
+
+* Setting up Supabase with Prisma took a lot of time due to errors in the Supabase direct connection string.
+
+* The **react-chartjs-2** package doesn’t provide direct code examples for all chart styles. Instead, I had to check the examples section, open the sandbox, extract the code, and then use it. This was slow and not very efficient.
+
+* Setting up all components to render seamlessly was also tricky since each component depended on others. TypeScript’s strict type checking added extra steps, though I consider this more as good practice in writing better code rather than a challenge.
