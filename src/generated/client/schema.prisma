@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id           String @id @default(cuid())
+  name         String
+  tickerSymbol String @unique
+
+  // Relation
+  historicalData HistoricalData[]
+}
+
+model HistoricalData {
+  id       String   @id @unique @default(cuid())
+  datetime DateTime
+  open     Float
+  high     Float
+  low      Float
+  close    Float
+  volume   Int
+
+  // Foreign key
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+}
